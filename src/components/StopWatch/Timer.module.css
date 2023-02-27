@@ -11,6 +11,10 @@
   font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 
+.btnClick:hover {
+    background-color: red;
+}
+
 .bigContainer {
   display: flex;
   align-items: center;
@@ -21,10 +25,10 @@
   margin-top: 150px;
   margin-left: 200px;
   background-color: #D3D3D3;
+  border-radius: 10px;
 }
 
 .sectionTimer {
-  background-color: red;
   text-align: center;
   height: 80%;
   padding: 20px;
@@ -42,7 +46,6 @@
 }
 
 .lapsStyle {
-    background-color: orange;
     width: 30%;
     font-size: 14px;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
