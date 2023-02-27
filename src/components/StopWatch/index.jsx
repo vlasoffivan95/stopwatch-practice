@@ -3,12 +3,11 @@ import React, { Component } from "react";
 class StopWatch extends Component {
   state = {
     startNumber: 0,
-    statusWatch: true,
+    statusWatch: false,
   };
 
-  startWatch = () => {
+  startInterval = () => {
     const { startNumber, statusWatch } = this.state;
-    this.setState((state)=> ({statusWatch:true}))
     if (statusWatch) {
       this.setState((state) => ({
         startNumber: state.startNumber + 1,
@@ -16,31 +15,38 @@ class StopWatch extends Component {
     }
   };
 
+  startWatch = () => {
+    const {statusWatch} = this.state;
+    this.setState({statusWatch:true})
+  }
+
   stopWatch = () => {
     const { statusWatch } = this.state;
     this.setState((state) => ({
-      statusWatch: !state.statusWatch,
+      statusWatch: false,
     }));
   };
 
   componentDidMount() {
-    this.timerID = setInterval(this.startWatch, 1000);
+    this.timerID = setInterval(this.startInterval, 1000);
   }
-
-  componentDidUpdate() {}
+  componentDidUpdate() {
+    console.log("update");
+  }
 
   componentWillUnmount() {
     clearInterval(this.timerID);
+    console.log("willunmount");
   }
 
   render() {
-    const { startNumber } = this.state;
+    const { startNumber, statusWatch } = this.state;
     return (
       <div>
         <h1>Hello, world</h1>
         <h2>{startNumber}</h2>
         <button onClick={this.startWatch}>Start Watch</button>
-        <button onClick={this.stopWatch}></button>
+        <button onClick={this.stopWatch}>Stop Watch</button>
       </div>
     );
   }
