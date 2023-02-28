@@ -1,0 +1,16 @@
+.lapsStyle {
+  width: 30%;
+  font-size: 14px;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  overflow-y: scroll;
+  height: 80%;
+  border:2px solid black;
+  text-align: center;
+}
+
+.pLaps {
+  font-size:30px;
+  font:bolder;
+  padding:10px;
+  text-align: center;
+}
