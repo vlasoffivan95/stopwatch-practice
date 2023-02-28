@@ -3,10 +3,20 @@ import styles from "./Timer.module.css";
 import LapsDisplay from "../LapsDisplay";
 import ControlBlock from "../ControlBlock";
 
+function convertToDate(seconds) {
+  const date = new Date(0, 0, 0, 0, 0, seconds, 0);
+  const dateStr = [date.getHours(), date.getMinutes(), date.getSeconds()]
+    .map((value) => {
+      return value < 10 ? "0" + value : value;
+    })
+    .join(":");
+  return dateStr;
+}
 const stateInitial = {
   startNumber: 0,
   statusWatch: false,
   laps: [],
+  date:convertToDate(0)
 };
 
 class StopWatch extends Component {
@@ -15,10 +25,11 @@ class StopWatch extends Component {
   };
 
   startInterval = () => {
-    const { startNumber, statusWatch } = this.state;
+    const { startNumber, statusWatch} = this.state;
     if (statusWatch) {
       this.setState((state) => ({
         startNumber: state.startNumber + 1,
+        date: convertToDate(state.startNumber + 1)
       }));
     }
   };
@@ -61,20 +72,24 @@ class StopWatch extends Component {
   }
 
   render() {
-    const { startNumber, statusWatch, laps } = this.state;
-    
-    return (
+    const { startNumber, statusWatch, laps, date } = this.state;
 
+    return (
       <div className={styles.bigContainer}>
         <section className={styles.sectionTimer}>
-          <h1 className={styles.h1Timer}>{startNumber}</h1>
+          <h1 className={styles.h1Timer}>{date}</h1>
           <div className={styles.btnContainer}>
-            <ControlBlock statusWatch = {statusWatch} startWatch={this.startWatch} stopWatch={this.stopWatch} resetWatch = {this.resetWatch} addLaps={this.addLaps} />
+            <ControlBlock
+              statusWatch={statusWatch}
+              startWatch={this.startWatch}
+              stopWatch={this.stopWatch}
+              resetWatch={this.resetWatch}
+              addLaps={this.addLaps}
+            />
           </div>
         </section>
         <LapsDisplay lapsArray={laps} />
-        </div>
-
+      </div>
     );
   }
 }

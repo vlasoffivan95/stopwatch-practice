@@ -6,6 +6,7 @@
   height: 80%;
   border:2px solid black;
   text-align: center;
+
 }
 
 .pLaps {
@@ -13,4 +14,5 @@
   font:bolder;
   padding:10px;
   text-align: center;
+  text-decoration: underline 3px;
 }
